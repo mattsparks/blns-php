@@ -15,11 +15,11 @@ use MattSparks\BLNS\BLNS;
 
 $blns = new BLNS;
 
-foreach($blns->getList() as $word) {
+foreach($blns->getList() as $string) {
     // Do your magic.
 }
 
-foreach($blns->getBase64List() as $word) {
+foreach($blns->getBase64List() as $string) {
     // Magic done here.
 }
 ```
