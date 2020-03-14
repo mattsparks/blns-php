@@ -8,7 +8,7 @@ class BLNS
      * BLNS Directory Path
      * @var const
      */
-    const BLNS_DIR = __DIR__ . '/../vendor/blns/';
+    const BLNS_DIR = __DIR__ . '/../vendor/blns/blns/';
 
     /**
      * BLNS List
