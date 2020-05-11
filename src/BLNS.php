@@ -2,13 +2,16 @@
 
 namespace MattSparks\BLNS;
 
+use ReflectionClass;
+use Composer\Autoload\ClassLoader;
+
 class BLNS
 {
     /**
      * BLNS Directory Path
      * @var const
      */
-    const BLNS_DIR = __DIR__ . '/../vendor/blns/blns/';
+    private $blns_dir = '';
 
     /**
      * BLNS List
@@ -27,8 +30,24 @@ class BLNS
      */
     public function __construct()
     {
+        $this->setBlnsPath();
         $this->list = $this->parseList('blns.json');
         $this->list64 = $this->parseList('blns.base64.json');
+    }
+
+    /**
+     * Set BLNS Path
+     * 
+     * Hat tip to: https://stackoverflow.com/a/45364136
+     * 
+     * @return void
+     */
+    private function setBlnsPath() : void 
+    {
+        $reflection = new ReflectionClass(ClassLoader::class);
+        $path = dirname(dirname($reflection->getFileName()));
+
+        $this->blns_dir = $path . '/blns/blns/';
     }
 
     /**
@@ -41,7 +60,7 @@ class BLNS
      */
     private function fetchList(string $list): string
     {
-        return file_get_contents(self::BLNS_DIR . $list);
+        return file_get_contents($this->blns_dir . $list);
     }
 
     /**
